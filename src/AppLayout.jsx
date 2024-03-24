@@ -13,7 +13,7 @@ function AppLayout() {
         <Outlet />
       </div>
 
-      <div className="w-[30%]">
+      <div className="w-[30%] min-h-[100vh] bg-gray-100">
         <PersonalInfo />
       </div>
     </div>
