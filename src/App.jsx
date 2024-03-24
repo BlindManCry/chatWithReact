@@ -1,15 +1,24 @@
-import { BrowserRouter, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import AppLayout from "./AppLayout";
+import Chat from "./pages/Chat/Chat";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
-    children: [{}],
+    children: [
+      {
+        element: <Chat />,
+        path: "/",
+      },
+    ],
   },
 ]);
 
 function App() {
-  return <BrowserRouter router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
+
+//random images
+//https://randomuser.me/api/portraits/men/1.jpg
