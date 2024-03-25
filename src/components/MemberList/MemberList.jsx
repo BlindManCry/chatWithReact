@@ -9,7 +9,7 @@ function MemberList() {
         />
       </div>
 
-      <div className="flex mt-6 gap-4 w-full ">
+      <div className="flex flex-col mt-6 gap-4 w-full ">
         <div className="flex justify-between items-center px-4 w-full">
           <div className="flex gap-3 items-center">
             <img
