@@ -1,32 +1,24 @@
 import { useEffect, useState } from "react";
 import MessageDisplay from "../../components/MessageDisplay/MessageDisplay";
-import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:3001");
+import { useChat } from "../../context/ChatContext";
 
 function Chat() {
-  const [messageList, setMessageList] = useState([]);
   const [message, setMessage] = useState("");
-  const [username, setUsername] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
 
-  useEffect(() => {
-    socket.emit("join_room", 2);
-  }, [socket]);
+  const { setMessageList, socket } = useChat();
 
-  function register() {
-    setIsAuth(true);
-  }
+  // useEffect(() => {
+  //   socket.emit("join_room", 2);
+  // }, [socket]);
 
   async function sendMessage(e) {
-    if (!isAuth) return;
-
     e.preventDefault();
 
     const messageDetails = {
       id: crypto.randomUUID(),
       room: 2,
-      username,
+      username: "daviti",
       message,
       userImage: "https://randomuser.me/api/portraits/men/1.jpg",
     };
@@ -44,14 +36,6 @@ function Chat() {
 
   return (
     <div className="flex flex-col h-[92vh] mt-6 px-10">
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <button onClick={register} className="bg-red-500">
-        Authoritazion
-      </button>
       <div className="flex justify-between min-h-[10%]">
         <div className="flex gap-3 items-center">
           <img
@@ -112,7 +96,7 @@ function Chat() {
       <hr className="mt-[20px]" />
 
       <div className="min-h-[80%]">
-        <MessageDisplay messageList={messageList} username={username} />
+        <MessageDisplay />
       </div>
 
       <form

@@ -1,16 +1,20 @@
+import { useChat } from "../../context/ChatContext";
+
 function YourProfile() {
+  const { activeUser } = useChat();
+
   return (
     <div className="flex mt-5 ml-5 items-center gap-3">
       <img
-        src="https://randomuser.me/api/portraits/men/1.jpg"
+        src={activeUser.image}
         alt=""
         className="w-[100px] h-[100px] rounded-[50%]"
       />
       <div className="flex flex-col">
         <p className="text-blue-600 font-semibold uppercase text-[18px]">
-          Sasha Gedevanishvili
+          {activeUser.username}
         </p>
-        <p className="text-gray-400">frontend developeri</p>
+        <p className="text-gray-400">{activeUser.status}</p>
       </div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
